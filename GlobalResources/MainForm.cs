@@ -20,11 +20,12 @@ namespace DespairEtude.GlobalResources
 
         private void InitializeComponent()
         {
-            MainPanel = new Panel { Size = GlobalSettings.DefaultWindowSize };
+            MainPanel = new Panel { Size = GlobalSettings.DefaultWindowSize, BackColor = Color.Transparent };
 
             this.ClientSize = GlobalSettings.DefaultWindowSize;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = Color.Black;
             this.MaximizeBox = false;
             this.Name = "MainForm";
 
