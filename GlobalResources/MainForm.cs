@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Media;
 using System.Threading;
+using DespairEtude.CustomComponents;
 
 namespace DespairEtude.GlobalResources
 {
@@ -20,7 +21,7 @@ namespace DespairEtude.GlobalResources
 
         private void InitializeComponent()
         {
-            MainPanel = new Panel { Size = GlobalSettings.DefaultWindowSize, BackColor = Color.Transparent };
+            MainPanel = new BufferedPanel { Size = GlobalSettings.DefaultWindowSize, BackColor = Color.Transparent };
 
             this.ClientSize = GlobalSettings.DefaultWindowSize;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Media;
 using DespairEtude.GlobalResources;
 using System.Threading;
+using DespairEtude.CustomComponents;
 
 namespace DespairEtude.Pages
 {

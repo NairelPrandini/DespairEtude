@@ -5,6 +5,7 @@ using System.Media;
 using System.Windows.Forms;
 using System.Threading;
 using DespairEtude.GlobalResources;
+using DespairEtude.CustomComponents;
 
 namespace DespairEtude.Pages
 {
@@ -130,8 +131,7 @@ namespace DespairEtude.Pages
 
         private void FullScreen_Click(object sender, EventArgs e)
         {
-            GlobalResources.GlobalSettings.ToggleFullScreen();
-            //Chnage the text of the button to reflect the current state
+            GlobalResources.GlobalFuntions.ToggleFullScreen();
             FullScreen.Text = GlobalResources.GlobalSettings.FullScreen ? "Windowed" : "Fullscreen";
         }
 

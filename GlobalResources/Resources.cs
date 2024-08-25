@@ -9,17 +9,6 @@ using DespairEtude.Pages;
 
 namespace DespairEtude.GlobalResources
 {
-
-    public class BufferedTableLayoutPanel : TableLayoutPanel
-    {
-        public BufferedTableLayoutPanel()
-        {
-            SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-            SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-            UpdateStyles();
-        }
-    }
-
     public static class Pages
     {
         public static MainForm MainForm;
@@ -38,7 +27,6 @@ namespace DespairEtude.GlobalResources
             Page.Dock = DockStyle.Fill;
             MainForm.MainPanel.Controls.Add(Page);
             Page.BringToFront();
-
         }
 
     }
@@ -77,12 +65,12 @@ namespace DespairEtude.GlobalResources
         public static Size DefaultWindowSize = new Size(800, 600);
         public static bool FullScreen = false;
         public static FontFamily DefaultFontFamilly = SystemFonts.MenuFont.FontFamily;
+    }
 
+    public static class GlobalFuntions
+    {
         public static void SetFullScreen()
         {
-            if (FullScreen == true) return;
-
-
             Pages.MainForm.Opacity = 0;
             int screenWidth = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Width;
             int screenHeight = System.Windows.Forms.Screen.PrimaryScreen.Bounds.Height;
@@ -105,7 +93,7 @@ namespace DespairEtude.GlobalResources
             Pages.MainForm.WindowState = FormWindowState.Maximized;
             Pages.MainForm.Refresh();
 
-            FullScreen = true;
+            GlobalSettings.FullScreen = true;
             Pages.MainForm.Opacity = 100;
         }
 
@@ -117,25 +105,17 @@ namespace DespairEtude.GlobalResources
 
         public static void ToggleFullScreen()
         {
-            if (FullScreen)
-            {
+            if (GlobalSettings.FullScreen)
                 SetWindowed();
-            }
             else
-            {
                 SetFullScreen();
-            }
         }
 
 
         public static void SetWindowed()
         {
-            if (FullScreen == false) return;
-
             Pages.MainForm.Opacity = 0;
-            Pages.MainForm.MainPanel.Size = DefaultWindowSize;
-
-            Pages.MainForm.MainPanel.Size = DefaultWindowSize;
+            Pages.MainForm.MainPanel.Size = GlobalSettings.DefaultWindowSize;
             Pages.MainForm.MainPanel.Location = new Point(0, 0);
 
             Pages.MainForm.FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -144,7 +124,7 @@ namespace DespairEtude.GlobalResources
 
             Pages.MainForm.Refresh();
 
-            FullScreen = false;
+            GlobalSettings.FullScreen = false;
             Pages.MainForm.Opacity = 100;
         }
 
@@ -158,7 +138,7 @@ namespace DespairEtude.GlobalResources
             {
                 if (c is Button b)
                 {
-                    b.Font = new Font(DefaultFontFamilly, fontSize);
+                    b.Font = new Font(GlobalSettings.DefaultFontFamilly, fontSize);
                 }
             }
         }
@@ -169,10 +149,12 @@ namespace DespairEtude.GlobalResources
             {
                 if (c is Button b)
                 {
-                    b.Font = new Font(DefaultFontFamilly, fontSize);
+                    b.Font = new Font(GlobalSettings.DefaultFontFamilly, fontSize);
                 }
             }
         }
 
     }
+
+
 }
