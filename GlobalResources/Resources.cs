@@ -11,9 +11,12 @@ namespace DespairEtude.GlobalResources
 {
     public static class Pages
     {
+
         public static MainForm MainForm;
         public static UserControl GamePage;
         public static UserControl MainMenu;
+
+        public static UserControl CurrentPage;
 
         public static void InitializePages()
         {
@@ -25,8 +28,11 @@ namespace DespairEtude.GlobalResources
         public static void LoadPage(UserControl Page)
         {
             Page.Dock = DockStyle.Fill;
+            //MainForm.MainPanel.Controls.Clear();
             MainForm.MainPanel.Controls.Add(Page);
+            CurrentPage = Page;
             Page.BringToFront();
+            Page.Focus();
         }
 
     }

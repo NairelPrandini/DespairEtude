@@ -10,12 +10,12 @@ using DespairEtude.CustomComponents;
 
 namespace DespairEtude.Pages
 {
-    public partial class Game : UserControl
+    public partial class Game : UserControl, ControlInputHandler
     {
-        private BufferedTableLayoutPanel PageLayout;
-        private PictureBox TitleImage;
-        private Button NewGame;
-        private Button Continue;
+        private PictureBox Background;
+        private PictureBox CharacterImage;
+        private Label TitleLabel;
+        private RichTextBox DialogueText;
 
         public Game()
         {
@@ -24,74 +24,52 @@ namespace DespairEtude.Pages
 
         private void InitializeComponent()
         {
+            // Background Image
+            this.Background = new PictureBox();
+            this.Background.Dock = DockStyle.Fill;
+            //this.BackgroundImage.Image = Image.FromStream(Resources.GetResource("Game.fea_r1f.png"));
+            this.Background.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.Controls.Add(this.Background);
 
-            this.PageLayout = new BufferedTableLayoutPanel();
-            this.TitleImage = new PictureBox();
-            this.NewGame = new Button();
-            this.Continue = new Button();
+            // Character Image
+            this.CharacterImage = new PictureBox();
+            this.CharacterImage.Size = new Size(300, 600); // Adjust size based on your character image
+            this.CharacterImage.Location = new Point(50, 100); // Adjust position as needed
+            //this.CharacterImage.Image = Image.FromStream(Resources.GetResource("Game.jes_a11_atya1.png"));
+            this.CharacterImage.SizeMode = PictureBoxSizeMode.Zoom;
+            this.Background.Controls.Add(this.CharacterImage); // Add to BackgroundImage to overlay
 
+            // Title Label
+            this.TitleLabel = new Label();
+            this.TitleLabel.Text = "Despair Etude"; // Replace with your title
+            this.TitleLabel.Font = new Font("Arial", 24, FontStyle.Bold);
+            this.TitleLabel.ForeColor = Color.White;
+            this.TitleLabel.BackColor = Color.Transparent;
+            this.TitleLabel.AutoSize = true;
+            this.TitleLabel.Location = new Point(20, 20); // Adjust position as needed
+            this.Background.Controls.Add(this.TitleLabel);
 
-
-            this.PageLayout.ColumnCount = 3;
-            this.PageLayout.Dock = DockStyle.Fill;
-            this.PageLayout.BackgroundImage = Image.FromStream(Resources.GetResource("Images.MenuBackground.jpg"));
-            this.PageLayout.BackgroundImageLayout = ImageLayout.Stretch;
-
-
-            this.PageLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 65F));  // Remaining space for background
-            this.PageLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));  // Fixed width for the image and buttons
-            this.PageLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 5F));   // Fixed width for the image and buttons
-
-            // Add an empty row to space out the buttons
-            this.PageLayout.RowCount = 11;  // Adjusted to include space rows
-            this.PageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 30F));  // Space between buttons
-            this.PageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));  // Button row
-            this.PageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));   // Space between buttons
-            this.PageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));  // Button row
-            this.PageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));   // Space between buttons
-            this.PageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));  // Button row
-            this.PageLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));   // Space between buttons
-
-            // 
-            // TitleImage
-            // 
-            this.TitleImage.BackColor = Color.Transparent;
-            this.TitleImage.Dock = DockStyle.Fill;
-            this.TitleImage.SizeMode = PictureBoxSizeMode.Zoom;
-            this.TitleImage.TabStop = false;
-            this.TitleImage.Image = Image.FromStream(Resources.GetResource("Images.Title.png"));
-
-            // Add buttons to the panel
-            this.PageLayout.Controls.Add(this.TitleImage, 1, 0);  // Title Image
-            this.PageLayout.Controls.Add(this.NewGame, 1, 1);     // Row 1
-            this.PageLayout.Controls.Add(this.Continue, 1, 3);    // Row 3
-
-
-            // Buttons
-            this.NewGame.Dock = DockStyle.Fill;
-            this.NewGame.Name = "NewGameButton";
-            this.NewGame.Text = "New Game";
-            this.NewGame.Click += new EventHandler(this.NewGame_Click);
-
-            this.Continue.Dock = DockStyle.Fill;
-            this.Continue.Name = "ContinueButton";
-            this.Continue.Text = "Continue";
-            this.Continue.Enabled = false;
-
-
-            this.Controls.Add(this.PageLayout);
-
+            // Dialogue Text
+            this.DialogueText = new RichTextBox();
+            this.DialogueText.Size = new Size(700, 150); // Adjust size based on your needs
+            this.DialogueText.Location = new Point(50, 500); // Adjust position as needed
+            this.DialogueText.Font = new Font("Arial", 14);
+            this.DialogueText.BackColor = Color.Black;
+            this.DialogueText.ForeColor = Color.White;
+            this.DialogueText.Text = "This is where the character's dialogue will be displayed."; // Initial text
+            this.DialogueText.ReadOnly = true;
+            this.DialogueText.BorderStyle = BorderStyle.None;
+            this.Background.Controls.Add(this.DialogueText);
         }
 
-        private void Game_Paint(object sender, PaintEventArgs e)
+        public void ProcessInput(object sender, KeyEventArgs e)
         {
-            this.Invalidate();
+            if (e.KeyCode == Keys.Escape)
+            {
+                GlobalResources.Pages.LoadPage(GlobalResources.Pages.MainMenu);
+            }
+
         }
 
-
-        private void NewGame_Click(object sender, EventArgs e)
-        {
-            GlobalResources.Pages.LoadPage(GlobalResources.Pages.MainMenu);
-        }
     }
 }

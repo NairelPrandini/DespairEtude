@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace DespairEtude.CustomComponents
 {
-    public class BufferedTableLayoutPanel : TableLayoutPanel
+    public partial class BufferedTableLayoutPanel : TableLayoutPanel
     {
         public BufferedTableLayoutPanel()
         {
@@ -20,7 +20,7 @@ namespace DespairEtude.CustomComponents
         }
     }
 
-    public class BufferedPanel : Panel
+    public partial class BufferedPanel : Panel
     {
         public BufferedPanel()
         {
@@ -29,6 +29,11 @@ namespace DespairEtude.CustomComponents
             SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             UpdateStyles();
         }
+    }
+
+    public interface ControlInputHandler
+    {
+        void ProcessInput(object sender, KeyEventArgs e);
     }
 
 

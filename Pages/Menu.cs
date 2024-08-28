@@ -9,7 +9,7 @@ using DespairEtude.CustomComponents;
 
 namespace DespairEtude.Pages
 {
-    public partial class MainMenu : UserControl
+    public partial class MainMenu : UserControl, ControlInputHandler
     {
         public MainMenu()
         {
@@ -119,9 +119,15 @@ namespace DespairEtude.Pages
 
         }
 
+
+        public void ProcessInput(object sender, KeyEventArgs e)
+        {
+            //NotImplemented;
+        }
+
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            Resources.PlayMusic("Music.Nocturne.wav");
+            //Resources.PlayMusic("Music.Nocturne.wav");
         }
 
         private void NewGame_Click(object sender, EventArgs e)
