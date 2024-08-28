@@ -28,8 +28,6 @@ namespace DespairEtude.GlobalResources
             };
 
 
-            this.AutoScaleMode = AutoScaleMode.Dpi;
-
 
             this.ClientSize = GlobalSettings.DefaultWindowSize;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
