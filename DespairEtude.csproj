@@ -18,9 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include=".\Resources\Images\MenuBackground.jpg" />
-    <EmbeddedResource Include=".\Resources\Music\Nocturne.wav" />
-    <EmbeddedResource Include=".\Resources\Images\Title.png" />
+    <EmbeddedResource Include=".\Resources\**\*.*" />
   </ItemGroup>
     
 </Project>
